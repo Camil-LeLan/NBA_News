@@ -4,20 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="🏀 NBA News" 
-        Height="720" Width="1050"
-        MinHeight="600" MinWidth="800"
+        Title="NBA News"
+        Height="720" Width="1200"
+        MinHeight="600" MinWidth="900"
         WindowStartupLocation="CenterScreen"
-        Background="#1A1A2E">
+        Background="#0D1117">
 
     <Window.Resources>
-
-        <Style x:Key="NbaButton" TargetType="Button">
-            <Setter Property="Background" Value="#E94560"/>
-            <Setter Property="Foreground" Value="White"/>
+        <Style x:Key="NavButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#A0AEC0"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="16,8"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
@@ -31,13 +30,8 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#C73652"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#A52B42"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="#555555"/>
+                                <Setter Property="Background" Value="#1A2340"/>
+                                <Setter Property="Foreground" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -45,243 +39,93 @@
             </Setter>
         </Style>
 
-        <Style TargetType="DataGrid">
-            <Setter Property="Background" Value="#16213E"/>
-            <Setter Property="Foreground" Value="#E0E0E0"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="RowBackground" Value="#16213E"/>
-            <Setter Property="AlternatingRowBackground" Value="#1A2650"/>
-            <Setter Property="HorizontalGridLinesBrush" Value="#2A3A6E"/>
-            <Setter Property="VerticalGridLinesBrush" Value="#2A3A6E"/>
+        <Style x:Key="NavButtonActive" TargetType="Button" BasedOn="{StaticResource NavButton}">
+            <Setter Property="Background" Value="#1A2340"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="SearchButton" TargetType="Button">
+            <Setter Property="Background" Value="#1A2340"/>
+            <Setter Property="Foreground" Value="#A0AEC0"/>
             <Setter Property="FontSize" Value="13"/>
-            <Setter Property="SelectionMode" Value="Single"/>
-            <Setter Property="AutoGenerateColumns" Value="False"/>
-            <Setter Property="IsReadOnly" Value="True"/>
-            <Setter Property="CanUserAddRows" Value="False"/>
-            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#2A3A6E"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="20"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2A3A6E"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
-
-        <Style TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="#0F3460"/>
-            <Setter Property="Foreground" Value="#E94560"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Padding" Value="10,8"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-
-        <Style TargetType="DataGridRow">
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#E94560"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#2A3A6E"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="64"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <!-- EN-TÊTE -->
-        <Border Grid.Row="0" Background="#0F3460">
-            <Grid>
+        <!-- NAVBAR -->
+        <Border Grid.Row="0"
+                Background="#0D1117"
+                BorderBrush="#1A2340"
+                BorderThickness="0,0,0,1">
+            <Grid Margin="24,0">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Margin="20,0">
-
-                    <!-- ✅ REMPLACEMENT DU 🏀 PAR TON IMAGE -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                     <Image Source="/Assets/basketball.png"
-                           Width="40" Height="40"
+                           Width="36" Height="36"
                            VerticalAlignment="Center"
                            Margin="0,0,10,0"/>
-
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="NBA News"
-                                   FontSize="24"
-                                   FontWeight="Bold"
-                                   Foreground="White"/>
-                        <TextBlock Text="Joueurs · Équipes · Matchs"
-                                   FontSize="12"
-                                   Foreground="#E94560"/>
+                        <TextBlock Text="NBA News" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                        <TextBlock Text="Joueurs · Équipes · Matchs" FontSize="10" Foreground="#E94560"/>
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Margin="0,0,20,0"
-                            x:Name="LoadingPanel"
-                            Visibility="Collapsed">
-                    <ProgressBar IsIndeterminate="True"
-                                 Width="120" Height="8"
-                                 Foreground="#E94560"
-                                 Background="#1A1A2E"
-                                 Margin="0,0,10,0"/>
-                    <TextBlock Text="Chargement..."
-                               Foreground="#E94560"
-                               VerticalAlignment="Center"
-                               FontSize="13"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="BtnNavHome"    Content="Accueil" Style="{StaticResource NavButtonActive}" Margin="4,0" Click="BtnNavHome_Click"/>
+                    <Button x:Name="BtnNavPlayers" Content="Joueurs" Style="{StaticResource NavButton}"       Margin="4,0" Click="BtnNavPlayers_Click"/>
+                    <Button x:Name="BtnNavTeams"   Content="Équipes" Style="{StaticResource NavButton}"       Margin="4,0" Click="BtnNavTeams_Click"/>
+                    <Button x:Name="BtnNavGames"   Content="Matchs"  Style="{StaticResource NavButton}"       Margin="4,0" Click="BtnNavGames_Click"/>
                 </StackPanel>
-            </Grid>
-        </Border>
 
-        <!-- BARRE D'OUTILS -->
-        <Border Grid.Row="1" Background="#16213E" Padding="15,0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0"
-                        x:Name="BtnLoadPlayers"
-                        Content="👤 Joueurs"
-                        Style="{StaticResource NbaButton}"
-                        Margin="0,0,8,0"
-                        Click="BtnLoadPlayers_Click"/>
-
-                <Button Grid.Column="1"
-                        x:Name="BtnLoadTeams"
-                        Content="🏆 Équipes"
-                        Style="{StaticResource NbaButton}"
-                        Margin="0,0,8,0"
-                        Click="BtnLoadTeams_Click"/>
-
-                <Button Grid.Column="2"
-                        x:Name="BtnLoadGames"
-                        Content="📅 Matchs"
-                        Style="{StaticResource NbaButton}"
-                        Click="BtnLoadGames_Click"/>
-
-                <Grid Grid.Column="4" VerticalAlignment="Center" Margin="0,0,8,0">
-                    <TextBox x:Name="SearchBox"
-                             Background="#16213E"
-                             Foreground="#E0E0E0"
-                             FontSize="14"
-                             Padding="10,8"
-                             BorderBrush="#2A3A6E"
-                             BorderThickness="1"
-                             CaretBrush="White"
-                             Height="36"
-                             TextChanged="SearchBox_TextChanged"/>
-                    <TextBlock x:Name="SearchPlaceholder"
-                               Text="🔍 Rechercher un joueur..."
-                               Foreground="#666666"
-                               FontSize="13"
-                               VerticalAlignment="Center"
-                               Margin="12,0"
-                               IsHitTestVisible="False"/>
+                <Grid Grid.Column="2" VerticalAlignment="Center" Width="220">
+                    <Button Style="{StaticResource SearchButton}" Click="BtnNavPlayers_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🔍" FontSize="12" Margin="0,0,6,0"/>
+                            <TextBlock Text="Rechercher..." FontSize="13" Foreground="#A0AEC0"/>
+                        </StackPanel>
+                    </Button>
                 </Grid>
-
-                <Button Grid.Column="5"
-                        x:Name="BtnSearch"
-                        Content="Rechercher"
-                        Style="{StaticResource NbaButton}"
-                        Background="#0F3460"
-                        Click="BtnSearch_Click"/>
             </Grid>
         </Border>
 
-        <!-- CONTENU PRINCIPAL -->
-        <Grid Grid.Row="2" Margin="15,10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock x:Name="SectionTitle"
-                       Grid.Row="0"
-                       Text="Bienvenue ! Cliquez sur un bouton pour charger les données."
-                       Foreground="#E94560"
-                       FontSize="16"
-                       FontWeight="SemiBold"
-                       Margin="0,0,0,10"/>
-
-            <DataGrid x:Name="PlayersGrid" Grid.Row="1" Visibility="Collapsed">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID"          Binding="{Binding Id}"            Width="60"/>
-                    <DataGridTextColumn Header="Nom complet" Binding="{Binding FullName}"       Width="180"/>
-                    <DataGridTextColumn Header="Poste"       Binding="{Binding Position}"       Width="70"/>
-                    <DataGridTextColumn Header="N° Maillot"  Binding="{Binding JerseyNumber}"   Width="90"/>
-                    <DataGridTextColumn Header="Pays"        Binding="{Binding Country}"        Width="100"/>
-                    <DataGridTextColumn Header="Draft"       Binding="{Binding DraftYear}"      Width="70"/>
-                    <DataGridTextColumn Header="Équipe"      Binding="{Binding TeamName}"       Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <DataGrid x:Name="TeamsGrid" Grid.Row="1" Visibility="Collapsed">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID"          Binding="{Binding Id}"             Width="50"/>
-                    <DataGridTextColumn Header="Nom complet" Binding="{Binding FullName}"        Width="200"/>
-                    <DataGridTextColumn Header="Ville"       Binding="{Binding City}"            Width="140"/>
-                    <DataGridTextColumn Header="Abrév."      Binding="{Binding Abbreviation}"    Width="70"/>
-                    <DataGridTextColumn Header="Conférence"  Binding="{Binding Conference}"      Width="100"/>
-                    <DataGridTextColumn Header="Division"    Binding="{Binding Division}"        Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <DataGrid x:Name="GamesGrid" Grid.Row="1" Visibility="Collapsed">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date"        Binding="{Binding FormattedDate}"    Width="100"/>
-                    <DataGridTextColumn Header="Domicile"    Binding="{Binding HomeTeamName}"     Width="180"/>
-                    <DataGridTextColumn Header="Score dom."  Binding="{Binding HomeTeamScore}"    Width="100"/>
-                    <DataGridTextColumn Header="Score vis."  Binding="{Binding VisitorTeamScore}" Width="100"/>
-                    <DataGridTextColumn Header="Visiteur"    Binding="{Binding VisitorTeamName}"  Width="180"/>
-                    <DataGridTextColumn Header="Statut"      Binding="{Binding Status}"           Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <Border x:Name="ErrorPanel"
-                    Grid.Row="1"
-                    Background="#2A1A1A"
-                    BorderBrush="#E94560"
-                    BorderThickness="1"
-                    CornerRadius="6"
-                    Padding="20"
-                    Visibility="Collapsed"
-                    VerticalAlignment="Top">
-                <StackPanel>
-                    <TextBlock Text="❌ Une erreur est survenue"
-                               Foreground="#E94560"
-                               FontSize="16"
-                               FontWeight="Bold"
-                               Margin="0,0,0,8"/>
-                    <TextBlock x:Name="ErrorMessage"
-                               Foreground="#CC8888"
-                               FontSize="13"
-                               TextWrapping="Wrap"/>
-                </StackPanel>
-            </Border>
-        </Grid>
-
-        <!-- BARRE DE STATUT -->
-        <Border Grid.Row="3" Background="#0F3460" Padding="15,0">
-            <TextBlock x:Name="StatusBar"
-                       Text="Prêt"
-                       Foreground="#888888"
-                       FontSize="12"
-                       VerticalAlignment="Center"/>
-        </Border>
-
+        <!-- FRAME CONTENU -->
+        <Frame x:Name="MainFrame"
+               Grid.Row="1"
+               NavigationUIVisibility="Hidden"
+               Background="#0D1117"/>
     </Grid>
 </Window>

@@ -10,14 +10,18 @@
 
   <ItemGroup>
     <None Remove="Assets\basketball.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\" />
+    <None Remove="Assets\calendar.png" />
+    <None Remove="Assets\joueur.png" />
+    <None Remove="Assets\spectateur.png" />
+    <None Remove="Assets\trophy.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\basketball.png" />
+    <Resource Include="Assets\calendar.png" />
+    <Resource Include="Assets\joueur.png" />
+    <Resource Include="Assets\spectateur.png" />
+    <Resource Include="Assets\trophy.png" />
   </ItemGroup>
 
 </Project>

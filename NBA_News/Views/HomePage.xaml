@@ -1,0 +1,253 @@
+﻿<Page x:Class="NBA_News.Views.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#0D1117">
+
+    <Page.Resources>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#3B82F6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="24,12"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2563EB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="24,12"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#4A5568"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1A2340"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+
+            <!-- HERO -->
+            <Border Height="520">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#0D1117" Offset="0"/>
+                        <GradientStop Color="#1A1A2E" Offset="0.5"/>
+                        <GradientStop Color="#16213E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="40">
+                    <Border Width="80" Height="80" CornerRadius="40" HorizontalAlignment="Center" Margin="0,0,0,20">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#7C3AED" Offset="0"/>
+                                <GradientStop Color="#3B82F6" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Image Source="/Assets/basketball.png" Width="48" Height="48"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="NBA News" FontSize="56" FontWeight="Bold" Foreground="White"
+                               HorizontalAlignment="Center" Margin="0,0,0,16"/>
+                    <TextBlock Text="Suivez toute l'actualité de la NBA en temps réel. Statistiques des joueurs,"
+                               FontSize="16" Foreground="#A0AEC0" HorizontalAlignment="Center" TextAlignment="Center"/>
+                    <TextBlock Text="classements des équipes et résultats des matchs."
+                               FontSize="16" Foreground="#A0AEC0" HorizontalAlignment="Center"
+                               TextAlignment="Center" Margin="0,0,0,32"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Voir les joueurs" Style="{StaticResource PrimaryButton}"
+                                Margin="0,0,12,0" Click="BtnHeroPlayers_Click"/>
+                        <Button Content="Matchs en direct" Style="{StaticResource SecondaryButton}"
+                                Click="BtnHeroGames_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- STATS -->
+            <Border Background="#0D1420" Padding="60,40">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                        <Image Source="/Assets/joueur.png" Width="28" Height="28"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="450+" FontSize="36" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Joueurs" FontSize="14" Foreground="#A0AEC0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                        <Image Source="/Assets/trophy.png" Width="28" Height="28"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="30" FontSize="36" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Équipes" FontSize="14" Foreground="#A0AEC0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                        <Image Source="/Assets/calendar.png" Width="28" Height="28"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="1230" FontSize="36" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Matchs/Saison" FontSize="14" Foreground="#A0AEC0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="3" HorizontalAlignment="Center">
+                        <Image Source="/Assets/spectateur.png" Width="28" Height="28"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="22M" FontSize="36" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Spectateurs" FontSize="14" Foreground="#A0AEC0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- CARTES -->
+            <StackPanel Margin="60,50">
+                <TextBlock Text="Explorez la NBA" FontSize="36" FontWeight="Bold" Foreground="White"
+                           HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                <TextBlock Text="Accédez à toutes les informations dont vous avez besoin pour suivre votre passion du basketball"
+                           FontSize="15" Foreground="#A0AEC0" HorizontalAlignment="Center"
+                           TextAlignment="Center" Margin="0,0,0,40"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Carte Joueurs -->
+                    <Border Grid.Column="0" Background="#111827" CornerRadius="12" Padding="28"
+                            Cursor="Hand" MouseLeftButtonUp="CardPlayers_Click">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#1A2340"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel>
+                            <Border Width="52" Height="52" CornerRadius="12" HorizontalAlignment="Left" Margin="0,0,0,20">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#3B82F6" Offset="0"/>
+                                        <GradientStop Color="#60A5FA" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Image Source="/Assets/joueur.png" Width="28" Height="28"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Joueurs" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                            <TextBlock Text="Découvrez les statistiques et performances des meilleurs joueurs NBA"
+                                       FontSize="13" Foreground="#A0AEC0" TextWrapping="Wrap" Margin="0,0,0,20"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="En savoir plus" FontSize="13" FontWeight="SemiBold" Foreground="White"/>
+                                <TextBlock Text=" ↗" FontSize="13" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Carte Équipes -->
+                    <Border Grid.Column="2" Background="#111827" CornerRadius="12" Padding="28"
+                            Cursor="Hand" MouseLeftButtonUp="CardTeams_Click">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#1A2340"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel>
+                            <Border Width="52" Height="52" CornerRadius="12" HorizontalAlignment="Left" Margin="0,0,0,20">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#7C3AED" Offset="0"/>
+                                        <GradientStop Color="#A78BFA" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Image Source="/Assets/trophy.png" Width="28" Height="28"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Équipes" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                            <TextBlock Text="Suivez les classements et résultats de toutes les équipes"
+                                       FontSize="13" Foreground="#A0AEC0" TextWrapping="Wrap" Margin="0,0,0,20"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="En savoir plus" FontSize="13" FontWeight="SemiBold" Foreground="White"/>
+                                <TextBlock Text=" ↗" FontSize="13" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Carte Matchs -->
+                    <Border Grid.Column="4" Background="#111827" CornerRadius="12" Padding="28"
+                            Cursor="Hand" MouseLeftButtonUp="CardGames_Click">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#1A2340"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel>
+                            <Border Width="52" Height="52" CornerRadius="12" HorizontalAlignment="Left" Margin="0,0,0,20">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#EA580C" Offset="0"/>
+                                        <GradientStop Color="#FB923C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Image Source="/Assets/calendar.png" Width="28" Height="28"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Matchs" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                            <TextBlock Text="Consultez les matchs en direct et le calendrier complet"
+                                       FontSize="13" Foreground="#A0AEC0" TextWrapping="Wrap" Margin="0,0,0,20"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="En savoir plus" FontSize="13" FontWeight="SemiBold" Foreground="White"/>
+                                <TextBlock Text=" ↗" FontSize="13" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
