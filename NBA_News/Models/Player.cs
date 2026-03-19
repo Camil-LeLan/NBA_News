@@ -35,6 +35,21 @@ namespace NBA_News.Models
         [JsonPropertyName("team")]
         public Team? Team { get; set; }
 
+        [JsonPropertyName("jersey_number")]
+        public string? JerseyNumber { get; set; }
+
+        [JsonPropertyName("country")]
+        public string? Country { get; set; }
+
+        [JsonPropertyName("draft_year")]
+        public int? DraftYear { get; set; }
+
+        [JsonPropertyName("draft_round")]
+        public int? DraftRound { get; set; }
+
+        [JsonPropertyName("draft_number")]
+        public int? DraftNumber { get; set; }
+
         // --- Propriétés calculées (non issues de l'API) ---
 
         /// <summary>Prénom + Nom, ex : "LeBron James"</summary>

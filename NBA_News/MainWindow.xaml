@@ -12,7 +12,6 @@
 
     <Window.Resources>
 
-        <!-- Style boutons principaux -->
         <Style x:Key="NbaButton" TargetType="Button">
             <Setter Property="Background" Value="#E94560"/>
             <Setter Property="Foreground" Value="White"/>
@@ -46,7 +45,6 @@
             </Setter>
         </Style>
 
-        <!-- Style DataGrid -->
         <Style TargetType="DataGrid">
             <Setter Property="Background" Value="#16213E"/>
             <Setter Property="Foreground" Value="#E0E0E0"/>
@@ -63,7 +61,6 @@
             <Setter Property="CanUserDeleteRows" Value="False"/>
         </Style>
 
-        <!-- Style en-têtes colonnes -->
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="#0F3460"/>
             <Setter Property="Foreground" Value="#E94560"/>
@@ -73,7 +70,6 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
-        <!-- Style lignes DataGrid -->
         <Style TargetType="DataGridRow">
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
@@ -108,7 +104,13 @@
                             Orientation="Horizontal"
                             VerticalAlignment="Center"
                             Margin="20,0">
-                    <TextBlock Text="🏀" FontSize="32" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+                    <!-- ✅ REMPLACEMENT DU 🏀 PAR TON IMAGE -->
+                    <Image Source="/Assets/basketball.png"
+                           Width="40" Height="40"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"/>
+
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="NBA News"
                                    FontSize="24"
@@ -120,7 +122,6 @@
                     </StackPanel>
                 </StackPanel>
 
-                <!-- Indicateur de chargement -->
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             VerticalAlignment="Center"
@@ -172,7 +173,6 @@
                         Style="{StaticResource NbaButton}"
                         Click="BtnLoadGames_Click"/>
 
-                <!-- Barre de recherche -->
                 <Grid Grid.Column="4" VerticalAlignment="Center" Margin="0,0,8,0">
                     <TextBox x:Name="SearchBox"
                              Background="#16213E"
@@ -217,43 +217,40 @@
                        FontWeight="SemiBold"
                        Margin="0,0,0,10"/>
 
-            <!-- DataGrid Joueurs -->
             <DataGrid x:Name="PlayersGrid" Grid.Row="1" Visibility="Collapsed">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID"          Binding="{Binding Id}"       Width="60"/>
-                    <DataGridTextColumn Header="Nom complet" Binding="{Binding FullName}"  Width="180"/>
-                    <DataGridTextColumn Header="Poste"       Binding="{Binding Position}"  Width="70"/>
-                    <DataGridTextColumn Header="Taille"      Binding="{Binding Height}"    Width="80"/>
-                    <DataGridTextColumn Header="Poids"       Binding="{Binding Weight}"    Width="80"/>
-                    <DataGridTextColumn Header="Équipe"      Binding="{Binding TeamName}"  Width="*"/>
+                    <DataGridTextColumn Header="ID"          Binding="{Binding Id}"            Width="60"/>
+                    <DataGridTextColumn Header="Nom complet" Binding="{Binding FullName}"       Width="180"/>
+                    <DataGridTextColumn Header="Poste"       Binding="{Binding Position}"       Width="70"/>
+                    <DataGridTextColumn Header="N° Maillot"  Binding="{Binding JerseyNumber}"   Width="90"/>
+                    <DataGridTextColumn Header="Pays"        Binding="{Binding Country}"        Width="100"/>
+                    <DataGridTextColumn Header="Draft"       Binding="{Binding DraftYear}"      Width="70"/>
+                    <DataGridTextColumn Header="Équipe"      Binding="{Binding TeamName}"       Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
 
-            <!-- DataGrid Équipes -->
             <DataGrid x:Name="TeamsGrid" Grid.Row="1" Visibility="Collapsed">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID"          Binding="{Binding Id}"          Width="50"/>
-                    <DataGridTextColumn Header="Nom complet" Binding="{Binding FullName}"     Width="200"/>
-                    <DataGridTextColumn Header="Ville"       Binding="{Binding City}"         Width="140"/>
-                    <DataGridTextColumn Header="Abrév."      Binding="{Binding Abbreviation}" Width="70"/>
-                    <DataGridTextColumn Header="Conférence"  Binding="{Binding Conference}"   Width="100"/>
-                    <DataGridTextColumn Header="Division"    Binding="{Binding Division}"     Width="*"/>
+                    <DataGridTextColumn Header="ID"          Binding="{Binding Id}"             Width="50"/>
+                    <DataGridTextColumn Header="Nom complet" Binding="{Binding FullName}"        Width="200"/>
+                    <DataGridTextColumn Header="Ville"       Binding="{Binding City}"            Width="140"/>
+                    <DataGridTextColumn Header="Abrév."      Binding="{Binding Abbreviation}"    Width="70"/>
+                    <DataGridTextColumn Header="Conférence"  Binding="{Binding Conference}"      Width="100"/>
+                    <DataGridTextColumn Header="Division"    Binding="{Binding Division}"        Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
 
-            <!-- DataGrid Matchs -->
             <DataGrid x:Name="GamesGrid" Grid.Row="1" Visibility="Collapsed">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date"       Binding="{Binding FormattedDate}"   Width="100"/>
-                    <DataGridTextColumn Header="Domicile"   Binding="{Binding HomeTeamName}"    Width="180"/>
-                    <DataGridTextColumn Header="Score dom." Binding="{Binding HomeTeamScore}"   Width="100"/>
-                    <DataGridTextColumn Header="Score vis." Binding="{Binding VisitorTeamScore}" Width="100"/>
-                    <DataGridTextColumn Header="Visiteur"   Binding="{Binding VisitorTeamName}" Width="180"/>
-                    <DataGridTextColumn Header="Statut"     Binding="{Binding Status}"          Width="*"/>
+                    <DataGridTextColumn Header="Date"        Binding="{Binding FormattedDate}"    Width="100"/>
+                    <DataGridTextColumn Header="Domicile"    Binding="{Binding HomeTeamName}"     Width="180"/>
+                    <DataGridTextColumn Header="Score dom."  Binding="{Binding HomeTeamScore}"    Width="100"/>
+                    <DataGridTextColumn Header="Score vis."  Binding="{Binding VisitorTeamScore}" Width="100"/>
+                    <DataGridTextColumn Header="Visiteur"    Binding="{Binding VisitorTeamName}"  Width="180"/>
+                    <DataGridTextColumn Header="Statut"      Binding="{Binding Status}"           Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
 
-            <!-- Panneau d'erreur -->
             <Border x:Name="ErrorPanel"
                     Grid.Row="1"
                     Background="#2A1A1A"
